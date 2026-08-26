@@ -1,3 +1,6 @@
+import math
+
+
     # Day 1 - 30 DaysOfPython Challenge
 
 print(2 + 3)             # addition(+)
@@ -17,3 +20,7 @@ print(type([1, 2, 3]))   # List
 print(type({'name':'Asabeneh'})) # Dictionary
 print(type({9.8, 3.14, 2.7}))    # Set
 print(type((9.8, 3.14, 2.7)))    # Tuple
+
+# Euclidean distance (2,3) and (10 , 8)
+distance = math.dist((2,3), (10,8))
+print(distance)
