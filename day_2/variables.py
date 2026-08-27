@@ -1,4 +1,7 @@
     # Day 2: 30 Days of python programming
+from textwrap import indent
+
+
 first_name = 'Freddy'
 last_name = 'Rosa'
 full_name = 'Freddy Rosa'
@@ -72,3 +75,17 @@ print(circum_of_circle)
 
 user_radius = float(input("Enter the radius: "))
 print(pi * (user_radius ** 2))
+
+# Storing value of the corresponding variable name
+new_first_name = input("Please provide your first name: ")
+new_last_name = input("Please provide your last name: ")
+new_country = input("Please provide the country you live in: ")
+new_age = int(input("Please provide your age: "))
+
+user = {
+    "first name": new_first_name,
+    "last name": new_last_name,
+    "country": new_country,
+    "age": new_age,
+}
+print(user)
