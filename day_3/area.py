@@ -29,17 +29,22 @@ circumference = 2 * pi * radius
 print(area, circumference)
 
     # Find the slope, x-intercept and y-intercept of y = 2x -2
-slope = 2
+slope_1 = 2
 
 # Y Intercept
 x = 0
-y_intercept = (slope * x) - 2
+y_intercept = (slope_1 * x) - 2
 
 # X Intercept
-x_intercept = (0 - y_intercept) / slope
-print(slope, x_intercept, y_intercept)
+x_intercept = (0 - y_intercept) / slope_1
+print(slope_1, x_intercept, y_intercept)
 
     # Find slope m = y2-y1/x2-x1 and Euclidean distance between point (2, 2) and point (6,10)
-slope = (10 - 2) / (6 - 2)
+slope_2 = (10 - 2) / (6 - 2)
 euclidean = math.dist((2, 2), (6, 10))
-print(slope, euclidean)
+print(slope_2, euclidean)
+
+    # Comparing slopes
+print(slope_1 == slope_2)
+
+    # Calculate the value of y (y = x^2 + 6x + 9) using different x values that make y = 0
