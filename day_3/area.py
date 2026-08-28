@@ -49,13 +49,13 @@ print(slope_1 == slope_2)
 
     # Calculate the value of y (y = x^2 + 6x + 9) using different x values that make y = 0
 x = -3
-y = ((-3) ** 2) + (6 * -3) + 9
+y = x ** 2 + 6 * x + 9
 print(f'When x is {x}, y is {y}')
 
     # Find the length of 'python' and 'dragon' and make a falsy comparison statement.
-python = len('python')
-dragon = len('dragon')
-print(python != dragon)
+python_length = len('python')
+dragon_length = len('dragon')
+print(python_length != dragon_length)
 
     # Use and operator to check if 'on' is found in both 'python' and 'dragon'
 print('on' in 'python' and 'on' in 'dragon')
@@ -67,8 +67,8 @@ print('jargon' in 'I hope this course is not full of jargon')
 print('on' not in 'python' and 'on' not in 'dragon')
 
     # Find the length of the text python and convert the value to float and convert it to string
-python = str(float(len('python')))
-print(f'The converted length of python is {python}')
+python_length_as_string = str(float(python_length))
+print(f'The converted length of python is {python_length_as_string}')
 
     # I check if a number is even using n % 2 == 0.
 
@@ -92,6 +92,8 @@ print(f'The converted length of python is {python}')
 
 # There is one dot outside the four complete groups.
 # Therefore, the remainder is 1, and 9 is odd.
+n = 8
+print(n % 2 == 0)
 
     # Check if the floor division of 7 by 3 is equal to the int converted value of 2.7.
 print(7 // 3 == int(2.7))
@@ -108,9 +110,21 @@ rate = int(input('Enter the rate per hour: '))
 weekly = hours * rate
 pay = hours * rate * 52 / 12
 print(f'Your weekly pay is {weekly}')
-print(f'Your average monthly pay is {pay}')
+print(f'Your average monthly pay is {pay:.2f}')
 
     # Prompt the user to enter number of years. Calculate the number of seconds a person can live. Assume a person can live hundred years
 years = int(input('Enter the number of years you have lived: '))
 seconds = years * 365 * 24 * 60 * 60
 print(f'You have lived for {seconds} seconds')
+
+    # 23. Display the following table:
+# 1 1 1 1 1
+# 2 1 2 4 8
+# 3 1 3 9 27
+# 4 1 4 16 64
+# 5 1 5 25 125
+print('''1 1 1 1 1
+2 1 2 4 8
+3 1 3 9 27
+4 1 4 16 64
+5 1 5 25 125''')
