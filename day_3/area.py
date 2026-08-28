@@ -48,3 +48,14 @@ print(slope_2, euclidean)
 print(slope_1 == slope_2)
 
     # Calculate the value of y (y = x^2 + 6x + 9) using different x values that make y = 0
+x = -3
+y = -3 ** 2 + 6 * -3 + 9
+print(y)
+
+    # Find the length of 'python' and 'dragon' and make a falsy comparison statement.
+python = len('python')
+dragon = len('dragon')
+print(python != dragon)
+
+    # Use and operator to check if 'on' is found in both 'python' and 'dragon'
+print('on' in 'python' and 'on' in 'dragon')
