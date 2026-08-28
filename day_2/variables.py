@@ -1,7 +1,4 @@
     # Day 2: 30 Days of python programming
-from textwrap import indent
-
-
 first_name = 'Freddy'
 last_name = 'Rosa'
 full_name = 'Freddy Rosa'
