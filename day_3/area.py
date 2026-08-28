@@ -71,9 +71,24 @@ python = str(float(len('python')))
 print(python)
 
     # I check if a number is even using n % 2 == 0.
+
 # The % operator returns the remainder after dividing n by 2.
 # If the remainder is 0, the number is divisible by 2, so it is even.
-# For example 8, 8 / 2 = 4 and 8 % 2 = 0, now think is as 4 groups of 2 | . . | . . | . . | . . |
-# There is no extra dot outside of the groups and that is why the remainder 0 == 0, and is even
-# If we do 9 / 2 = 4.5 and 9 % 2 = 1 | . . | . . | . . | . . | .
-# Whe see a lonely dot outside of the 4 groups and that is the remainder 1
+
+# For example:
+# 8 // 2 = 4 complete groups
+# 8 % 2 = 0 objects left over
+
+# | . . | . . | . . | . . |
+
+# There is no extra dot outside the four groups.
+# Therefore, the remainder is 0, and 8 is even.
+
+# With 9:
+# 9 // 2 = 4 complete groups
+# 9 % 2 = 1 object left over
+
+# | . . | . . | . . | . . | .
+
+# There is one dot outside the four complete groups.
+# Therefore, the remainder is 1, and 9 is odd.
