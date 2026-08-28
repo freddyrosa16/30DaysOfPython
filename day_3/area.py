@@ -1,3 +1,6 @@
+import math
+
+
     # Area of a triangle
 base = int(input("Enter the base of the triangle: "))
 height = int(input("Enter the height of the triangle: "))
@@ -37,3 +40,6 @@ x_intercept = (0 - y_intercept) / slope
 print(slope, x_intercept, y_intercept)
 
     # Find slope m = y2-y1/x2-x1 and Euclidean distance between point (2, 2) and point (6,10)
+slope = (10 - 2) / (6 - 2)
+euclidean = math.dist((2, 2), (6, 10))
+print(slope, euclidean)
