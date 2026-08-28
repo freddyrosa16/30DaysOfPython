@@ -49,7 +49,7 @@ print(slope_1 == slope_2)
 
     # Calculate the value of y (y = x^2 + 6x + 9) using different x values that make y = 0
 x = -3
-y = -3 ** 2 + 6 * -3 + 9
+y = ((-3) ** 2) + (6 * -3) + 9
 print(y)
 
     # Find the length of 'python' and 'dragon' and make a falsy comparison statement.
@@ -92,3 +92,25 @@ print(python)
 
 # There is one dot outside the four complete groups.
 # Therefore, the remainder is 1, and 9 is odd.
+
+    # Check if the floor division of 7 by 3 is equal to the int converted value of 2.7.
+print(7 // 3 == int(2.7))
+
+    # Check if type of '10' is equal to type of 10
+print(type('10') == type(10))
+
+    # Check if int('9.8') is equal to 10
+print(int(float("9.8")) == 10)
+
+    # Prompt the user to enter hours and rate per hour. Calculate pay of the person?
+hours = int(input('Enter the hours worked per week: '))
+rate = int(input('Enter the rate per hour: '))
+weekly = hours * rate
+pay = hours * rate * 52 / 12
+print(f'Your weekly rate is of {weekly}')
+print(f'Your monthly rate is of {pay}')
+
+    # Prompt the user to enter number of years. Calculate the number of seconds a person can live. Assume a person can live hundred years
+years = int(input('Enter the number of years you have lived: '))
+seconds = 3600 * years * 365 * 24 * 60 * 60
+print(f'You have lived for {seconds} seconds')
