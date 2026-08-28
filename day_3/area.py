@@ -59,3 +59,21 @@ print(python != dragon)
 
     # Use and operator to check if 'on' is found in both 'python' and 'dragon'
 print('on' in 'python' and 'on' in 'dragon')
+
+    # Use in operator to check if jargon is in the sentence.
+print('jargon' in 'I hope this course is not full of jargon')
+
+    # Use and operator to check that there is no 'on' is found in both 'python' and 'dragon'
+print('on' not in 'python' and 'on' not in 'dragon')
+
+    # Find the length of the text python and convert the value to float and convert it to string
+python = str(float(len('python')))
+print(python)
+
+    # I check if a number is even using n % 2 == 0.
+# The % operator returns the remainder after dividing n by 2.
+# If the remainder is 0, the number is divisible by 2, so it is even.
+# For example 8, 8 / 2 = 4 and 8 % 2 = 0, now think is as 4 groups of 2 | . . | . . | . . | . . |
+# There is no extra dot outside of the groups and that is why the remainder 0 == 0, and is even
+# If we do 9 / 2 = 4.5 and 9 % 2 = 1 | . . | . . | . . | . . | .
+# Whe see a lonely dot outside of the 4 groups and that is the remainder 1
