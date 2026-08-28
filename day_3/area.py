@@ -24,3 +24,16 @@ radius = int(input("Enter the radius of the circle: "))
 area = pi * radius * radius
 circumference = 2 * pi * radius
 print(area, circumference)
+
+    # Find the slope, x-intercept and y-intercept of y = 2x -2
+slope = 2
+
+# Y Intercept
+x = 0
+y_intercept = (slope * x) - 2
+
+# X Intercept
+x_intercept = (0 - y_intercept) / slope
+print(slope, x_intercept, y_intercept)
+
+    # Find slope m = y2-y1/x2-x1 and Euclidean distance between point (2, 2) and point (6,10)
