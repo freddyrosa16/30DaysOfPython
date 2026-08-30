@@ -21,10 +21,15 @@ elif difference < -1:
     print(f'You are older by {abs(difference)} years.')
 
     # Ask the user for two numbers. Display whether the first number is greater than, smaller than, or equal to the second number.
-#first_number = int(input('Enter a number: '))
-#second_number = int(input('Enter a second number: '))
+first_number = int(input('Enter a number: '))
+second_number = int(input('Enter a second number: '))
 
-
+if first_number > second_number:
+    print(f'First Number {first_number} is greater than Second Number {second_number}')
+elif first_number < second_number:
+    print(f'First Number {first_number} is smaller than Second Number {second_number}')
+else:
+    print(f'First Number {first_number} is equal to {second_number}')
 
     # Ask for a student's score and display the corresponding grade:
         # 90-100: A
@@ -32,7 +37,17 @@ elif difference < -1:
         # 70-79: C
         # 60-69: D
         # 0-59: F
-
+score = int(input('Enter your score: '))
+if score >= 90 and score <= 100:
+    print('You have an A.')
+elif score >= 80 and score <= 89:
+    print('You have a B.')
+elif score >= 70 and score <= 79:
+    print('You have a C.')
+elif score >= 60 and score <= 69:
+    print('You have a D.')
+elif score >= 0 and score <= 59:
+    print('You have an F.')
 
     # Ask the user for a month and display its season:
         # September, October, November: Autumn
