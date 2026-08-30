@@ -7,10 +7,23 @@ else:
 
     # Compare my_age with an age entered by the user. Explain who is older, handle equal ages, and use "year" for a difference of one or "years" for larger differences.
 my_age = 32
-if my_age == age:
+difference = my_age - age
+
+if difference == 0:
     print('We are the same age.')
+elif difference == 1:
+    print(f'I am older by {difference} year.')
+elif difference > 1:
+    print(f'I am older by {difference} years.')
+elif difference == -1:
+    print(f'You are older by {abs(difference)} year.')
+elif difference < -1:
+    print(f'You are older by {abs(difference)} years.')
 
     # Ask the user for two numbers. Display whether the first number is greater than, smaller than, or equal to the second number.
+#first_number = int(input('Enter a number: '))
+#second_number = int(input('Enter a second number: '))
+
 
 
     # Ask for a student's score and display the corresponding grade:
