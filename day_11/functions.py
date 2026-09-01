@@ -1,8 +1,13 @@
+from data.countries_data import countries_data
+
 # Day 11: Functions
 
 # Exercises: Level 1
 
 # 1. Define add_two_numbers with two parameters. Return their sum.
+from operator import truediv
+
+
 def add_two_numbers(a, b):
     return a + b
 print(add_two_numbers(3, 5))
@@ -258,12 +263,34 @@ show_args(name="Alice", age=30, city="New York")
 # Exercises: Level 3
 
 # 1. Define is_prime. Accept a number and return whether it is prime.
+def is_prime(number):
+    if number <= 1:
+        return False
+    for i in range(2, number):
+        if number % i == 0:
+            return False
+    return True
+print(is_prime(10))
 
 # 2. Define a function that accepts a list and checks whether every item is unique.
+def unique(lst):
+    if len(lst) > len(set(lst)):
+        return False
+    return True
+
+print(unique(['Freddy', 'Jose', 'Ivan', 'Jota', 'Freddy']))
 
 # 3. Define a function that accepts a list and checks whether all items have the same data type.
+def data_type(lst):
+    return all(type(item) == type(lst[0]) for item in lst)
+print(data_type(['Freddy', 'Jose', 'Ivan', 'Jota', 'Freddy', 3.3]))
 
 # 4. Define a function that checks whether a provided name is a valid Python variable name.
+def valid_name(name):
+    if name.isidentifier() == True:
+        return True
+    return False
+print(valid_name('valid_name'))
 
 # 5. Use data/countries_data.py to define most_spoken_languages.
 # It should accept whether the caller wants 10 or 20 results and return that many languages
