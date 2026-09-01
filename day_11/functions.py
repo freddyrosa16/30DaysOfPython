@@ -243,11 +243,16 @@ print(calculate_standard_deviation([1,2,3,4,2,5,1,2,9,7]))
 
 # 5. Define greet with a default name argument. With no supplied name, return or print
 # "Hello, Guest!" With a supplied name, greet that person instead.
-
+def greet(name='Guest'):
+    return f'Hello, {name}!'
+print(greet(name='Freddy'))
 
 # 6. Define show_args so it accepts any number of named arguments and prints each name and value.
 # Example inputs may include name='Alice', age=30, and city='New York'.
-
+def show_args(**kwargs):
+    for key, value in kwargs.items():
+        print(f'{key}: {value}')
+show_args(name="Alice", age=30, city="New York")
 
 
 # Exercises: Level 3
