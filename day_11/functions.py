@@ -85,36 +85,72 @@ print_list()
 # Expected examples:
 # reverse_list([1, 2, 3, 4, 5]) returns [5, 4, 3, 2, 1]
 # reverse_list(['A', 'B', 'C']) returns ['C', 'B', 'A']
-def reverse_list():
+def reverse_list(lst):
+    new_list = []
+    for i in lst:
+        new_list.insert(0, i)
+    return new_list
+print(reverse_list([1, 2, 3, 4, 5]))
+print(reverse_list(['A', 'B', 'C']))
 
 
 # 10. Define capitalize_list_items. Accept a list and return a new list whose items are capitalized.
-
+def capitalize_list_items(lst):
+    new_lst = []
+    for i in lst:
+        new_lst.append(i.capitalize())
+    return new_lst
+print(capitalize_list_items(['hello', 'my', 'name', 'is', 'freddy']))
 
 # 11. Define add_item. Accept a list and an item, then return the list with that item added at the end.
 # Expected examples:
 # add_item(['Potato', 'Tomato', 'Mango', 'Milk'], 'Meat')
 # returns ['Potato', 'Tomato', 'Mango', 'Milk', 'Meat']
 # add_item([2, 3, 7, 9], 5) returns [2, 3, 7, 9, 5]
-
+def add_item(lst, item):
+    lst.append(item)
+    return lst
+print(add_item(['Potato', 'Tomato', 'Mango', 'Milk'], 'Meat'))
+print(add_item([2, 3, 7, 9], 5))
 
 # 12. Define remove_item. Accept a list and an item, then return the list without that item.
 # Expected examples:
 # remove_item(['Potato', 'Tomato', 'Mango', 'Milk'], 'Mango')
 # returns ['Potato', 'Tomato', 'Milk']
 # remove_item([2, 3, 7, 9], 3) returns [2, 7, 9]
-
+def remove_item(lst, item):
+    for i in lst:
+        if i == item:
+            lst.remove(i)
+    return lst
+print(remove_item(['Potato', 'Tomato', 'Mango', 'Milk'], 'Mango'))
+print(remove_item([2, 3, 7, 9], 3))
 
 # 13. Define sum_of_numbers. Accept a number and return the sum from 0 through that number.
 # Expected results: sum_of_numbers(5) returns 15, sum_of_numbers(10) returns 55,
 # and sum_of_numbers(100) returns 5050.
-
+def sum_of_numbers(num):
+    total = 0
+    for i in range(0, num + 1):
+        total += i
+    return total
+print(sum_of_numbers(100))
 
 # 14. Define sum_of_odds. Accept a number and return the sum of all odd numbers through it.
-
+def sum_of_odds(a):
+    total = 0
+    for i in range(1, a + 1, 2):
+        total += i
+    return total
+print(sum_of_odds(100))
 
 # 15. Define sum_of_even. Accept a number and return the sum of all even numbers through it.
-
+def sum_of_even(a):
+    total = 0
+    for i in range(0, a + 1, 2):
+        total += i
+    return total
+print(sum_of_even(100))
 
 
 # Exercises: Level 2
