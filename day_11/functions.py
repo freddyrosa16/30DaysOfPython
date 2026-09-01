@@ -295,7 +295,25 @@ print(valid_name('valid_name'))
 # 5. Use data/countries_data.py to define most_spoken_languages.
 # It should accept whether the caller wants 10 or 20 results and return that many languages
 # in descending order of frequency.
+def most_spoken_languages(countries_data, amount):
+    languages = {}
+    for country in countries_data:
+        for language in country['languages']:
+            if language in languages:
+                languages[language] += 1
+            else:
+                languages[language] = 1
+    new_sorted_languages = sorted(languages.items(), reverse=True, key=lambda x: x[1])
+    return new_sorted_languages[:amount]
+print(most_spoken_languages(countries_data, 20))
 
 # 6. Use data/countries_data.py to define most_populated_countries.
 # It should accept whether the caller wants 10 or 20 results and return that many countries
 # in descending order of population.
+def most_populated_countries(countries_data, amount):
+    total = []
+    for i in countries_data:
+        total.append((i['population'], i['name']))
+    new_sort_tp = sorted(total, reverse=True)
+    return new_sort_tp[:amount]
+print(most_populated_countries(countries_data, 20))
