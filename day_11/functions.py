@@ -157,19 +157,97 @@ print(sum_of_even(100))
 
 # 1. Define evens_and_odds. Accept a positive integer and count the even and odd numbers
 # from 0 through that integer. For 100, there should be 51 evens and 50 odds.
+def even_and_odds(a):
+    even = 0
+    odd = 0
+    for i in range(0, a + 1):
+        if i % 2 == 0:
+            even += 1
+        else:
+            odd += 1
+    return (even, odd)
+print(even_and_odds(100))
 
 # 2. Define factorial. Accept a whole number and return its factorial.
+def factorial(a):
+    total = 1
+    if a <= 0:
+        return None
+    for i in range(1, a + 1):
+        total *= i
+    return total
+print(factorial(5))
 
 # 3. Define is_empty. Accept a value and determine whether it is empty.
+def is_empty(value):
+    if len(value) == 0:
+        return True
+    return False
+print(is_empty([]))
 
 # 4. Define separate functions that accept a list of numbers and calculate its:
 # mean, median, mode, range, variance, and standard deviation.
+def calculate_mean(lst):
+    length = len(lst)
+    sum_of_numbers = 0
+    for i in lst:
+        sum_of_numbers += i
+    mean = sum_of_numbers / length
+    return mean
+print(calculate_mean([1,2,2,5]))
+
+def calculate_median(lst):
+    length = len(lst)
+    new_sorted_lst = sorted(lst)
+    mid = length // 2
+    if length % 2 == 1:
+        return new_sorted_lst[mid]
+    else:
+        return new_sorted_lst[mid - 1]
+print(calculate_median([1,2,3,4]))
+
+def calculate_mode(lst):
+    new_dict_mode = {}
+    for i in lst:
+        if i not in new_dict_mode:
+            new_dict_mode[i] = 1
+        else:
+            new_dict_mode[i] += 1
+    sorted_dict = sorted(new_dict_mode.items(),reverse=True, key=lambda x: x[1])
+    return sorted_dict[0][0]
+print(calculate_mode([1,2,3,4,4,4,5,5,6,6,7,7,7,7,8,8,8,9,9,9]))
+
+def calculate_range(lst):
+    total = 0
+    new_sorted_range = sorted(lst, reverse=True)
+    total = new_sorted_range[0] - new_sorted_range[-1]
+    return total
+print(calculate_range([1,2,3,4,2,5,1,2,9,7]))
+
+def calculate_variance(lst):
+    mean = calculate_mean(lst)
+    length = len(lst)
+    variance = 0
+    for i in lst:
+        distance = (i - mean) ** 2
+        variance += distance
+    variance = variance / length
+    return variance
+print(calculate_variance([1,2,3,4,2,5,1,2,9,7]))
+
+def calculate_standard_deviation(lst):
+    variance = calculate_variance(lst)
+    std_dev = variance ** 0.5
+    return std_dev
+print(calculate_standard_deviation([1,2,3,4,2,5,1,2,9,7]))
 
 # 5. Define greet with a default name argument. With no supplied name, return or print
 # "Hello, Guest!" With a supplied name, greet that person instead.
 
+
 # 6. Define show_args so it accepts any number of named arguments and prints each name and value.
 # Example inputs may include name='Alice', age=30, and city='New York'.
+
 
 
 # Exercises: Level 3
