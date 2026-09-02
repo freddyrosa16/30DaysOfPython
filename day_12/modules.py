@@ -40,7 +40,12 @@ user_id_gen_by_user()
 # 3. Define rgb_color_gen. Return one random RGB color whose red, green, and blue values
 # are each between 0 and 255.
 # Example output: rgb(125,244,255)
-
+def rgb_color_gen():
+    red = random.randint(0 , 255)
+    green = random.randint(0, 255)
+    blue = random.randint(0 , 255)
+    return f'rgb({red},{green},{blue})'
+print(rgb_color_gen())
 
 # Exercises: Level 2
 
