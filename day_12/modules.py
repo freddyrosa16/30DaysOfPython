@@ -53,7 +53,16 @@ print(rgb_color_gen())
 # containing that many random hexadecimal colors. Each color should begin with # and contain
 # six characters chosen from 0-9 and a-f.
 # Example output: ['#a3e12f', '#03ed55', '#eb3d2b']
-
+def list_of_hexa_colors(amount):
+    colors = []
+    for _ in range(amount):
+        new_color = "#"
+        for _ in range(6):
+            characters = string.digits + "abcdef"
+            new_color += random.choice(characters)
+        colors.append(new_color)
+    return colors
+print(list_of_hexa_colors(4))
 
 # 2. Define list_of_rgb_colors. Accept how many colors the caller wants and return a list
 # containing that many random RGB colors.
