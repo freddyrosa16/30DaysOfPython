@@ -67,7 +67,16 @@ print(list_of_hexa_colors(4))
 # 2. Define list_of_rgb_colors. Accept how many colors the caller wants and return a list
 # containing that many random RGB colors.
 # Example output: ['rgb(5,55,175)', 'rgb(50,105,100)']
-
+def list_of_rgb_colors(amount):
+    colors = []
+    for _ in range(amount):
+        red = random.randint(0 , 255)
+        green = random.randint(0, 255)
+        blue = random.randint(0 , 255)
+        rgb = f'rgb({red},{green},{blue})'
+        colors.append(rgb)
+    print(colors)
+list_of_rgb_colors(4)
 
 # 3. Define generate_colors. Accept a color type ('hexa' or 'rgb') and an amount.
 # Return the requested number of colors in the requested format.
