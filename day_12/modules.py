@@ -96,6 +96,16 @@ print(generate_colors('rgb', 4))
 # Exercises: Level 3
 
 # 1. Define shuffle_list. Accept a list and return its items in a random order.
+def shuffle_list(lst):
+    return sorted(lst, key=lambda x: random.random())
+print(shuffle_list([1,2,3,4,5,6,7,8,9]))
 
 
 # 2. Define a function that returns a list of seven unique random numbers from 0 through 9.
+def random_lst():
+    st = set()
+    while len(st) < 7:
+        number = random.randint(0, 9)
+        st.add(number)
+    return list(st)
+print(random_lst())
