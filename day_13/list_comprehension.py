@@ -67,6 +67,14 @@ print(country_dict())
 #          [('Donald', 'Trump')], [('Bill', 'Gates')]]
 # Expected output:
 # ['Asabeneh Yetayeh', 'David Smith', 'Donald Trump', 'Bill Gates']
-
+def string_names():
+    names = [[('Asabeneh', 'Yetayeh')], [('David', 'Smith')], [('Donald', 'Trump')], [('Bill', 'Gates')]]
+    name = [f"{j[0]} {j[1]}" for i in names for j in i]
+    return name
+print(string_names())
 
 # 7. Write a lambda function that calculates either the slope or the y-intercept of a linear function.
+def slope_linear(x1, x2, y1, y2):
+    slope = lambda x1, x2, y1, y2: (y2 - y1) / (x2 - x1)
+    return slope(x1, x2, y1, y2)
+print(slope_linear(1,2,3,4))
