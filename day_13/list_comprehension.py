@@ -56,7 +56,11 @@ print(country_list())
 # [{'country': 'FINLAND', 'city': 'HELSINKI'},
 #  {'country': 'SWEDEN', 'city': 'STOCKHOLM'},
 #  {'country': 'NORWAY', 'city': 'OSLO'}]
-
+def country_dict():
+    countries = [[('Finland', 'Helsinki')], [('Sweden', 'Stockholm')], [('Norway', 'Oslo')]]
+    country = [{'country': j[0].upper(), 'city': j[1].upper()} for i in countries for j in i]
+    return country
+print(country_dict())
 
 # 6. Using list comprehension, change this list of names into a list of full-name strings:
 # names = [[('Asabeneh', 'Yetayeh')], [('David', 'Smith')],
