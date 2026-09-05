@@ -44,6 +44,10 @@ print(create_list_tp())
 #  ['SWEDEN', 'SWE', 'STOCKHOLM'],
 #  ['NORWAY', 'NOR', 'OSLO']]
 def country_list():
+    countries = [[('Finland', 'Helsinki')], [('Sweden', 'Stockholm')], [('Norway', 'Oslo')]]
+    country = [[j[0].upper(), j[0][:3].upper(), j[1].upper()] for i in countries for j in i]
+    return country
+print(country_list())
 
 # 5. Using list comprehension, change this country data into a list of dictionaries:
 # countries = [[('Finland', 'Helsinki')], [('Sweden', 'Stockholm')],
