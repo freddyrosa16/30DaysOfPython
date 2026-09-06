@@ -18,7 +18,6 @@ numbers = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
 # 3. Define a named function, then pass it to map, filter, or reduce as the callback, following the lesson examples.
 def square(x):
     return x ** 2
-numbers = [1,2,3,4,5,6,7,8,9]
 numbers_squared = map(square, numbers)
 print(list(numbers_squared))
 
@@ -37,25 +36,31 @@ for number in numbers:
 # Exercises: Level 2
 
 # 1. Apply map to the countries list to produce a new list of uppercase country names.
-
+upper_country = list(map(lambda x: x.upper(), countries))
+print(upper_country)
 
 # 2. Apply map to the numbers list to produce a new list containing each number squared.
-
+squared_number = list(map(lambda x: x ** 2, numbers))
+print(squared_number)
 
 # 3. Apply map to the names list to produce a new list of uppercase names.
-
-
+upper_name = list(map(lambda x: x.upper(), names))
+print(upper_name)
 # 4. Apply filter to keep the country names containing 'land'.
-
+filter_land = list(filter(lambda x: 'land' in x, countries))
+print(filter_land)
 
 # 5. Apply filter to keep the country names with exactly six characters.
-
+names_6_characters = list(filter(lambda x: len(x) == 6, names))
+print(names_6_characters)
 
 # 6. Apply filter to keep the country names with six or more characters.
-
+filter_countries = list(filter(lambda x: len(x) >= 6, countries))
+print(filter_countries)
 
 # 7. Apply filter to keep the country names beginning with 'E'.
-
+countries_start_e = list(filter(lambda x: x.startswith('E'), countries))
+print(countries_start_e)
 
 # 8. Combine at least two operations from map, filter, and reduce in one chain, passing one operation's output into the next using Python syntax.
 
