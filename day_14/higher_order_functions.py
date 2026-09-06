@@ -16,16 +16,23 @@ numbers = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
 # higher-order function takes another function as an input and returns a function or both
 
 # 3. Define a named function, then pass it to map, filter, or reduce as the callback, following the lesson examples.
-
+def square(x):
+    return x ** 2
+numbers = [1,2,3,4,5,6,7,8,9]
+numbers_squared = map(square, numbers)
+print(list(numbers_squared))
 
 # 4. Print every country from the countries list using a for loop.
-
+for country in countries:
+    print(country)
 
 # 5. Print every name from the names list using a for loop.
-
+for name in names:
+    print(name)
 
 # 6. Print every number from the numbers list using a for loop.
-
+for number in numbers:
+    print(number)
 
 # Exercises: Level 2
 
