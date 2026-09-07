@@ -1,6 +1,7 @@
 # Starting lists for Levels 1 and 2, unless an exercise asks for the full country list:
 from functools import reduce
 from data.countries import countries as all_countries
+from data.countries_data import countries_data
 
 
 countries = ['Estonia', 'Finland', 'Sweden', 'Denmark', 'Norway', 'Iceland']
@@ -16,8 +17,8 @@ numbers = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
 
 # 2. Explain what higher-order functions, closures, and decorators do and how they differ.
 # Decorator allows the user to add a functionality to the existing object without modifying the structure
-# Closures allow the nested function access the outer function
-# higher-order function takes another function as an input and returns a function or both
+# A closure retains access to variables from its enclosing scope, even after the outer function returns.
+# A higher-order function accepts another function as an argument, returns a function, or both.
 
 # 3. Define a named function, then pass it to map, filter, or reduce as the callback, following the lesson examples.
 def square(x):
@@ -122,3 +123,29 @@ print(get_last_ten_countries())
 # a. Create separate sorted lists of the country records: one by name, one by capital, and one by population.
 # b. Find the ten languages listed in the most countries, ranked by country count from highest to lowest; count countries, not individual speakers.
 # c. Find the ten countries with the largest populations, ranked from highest to lowest.
+
+# A
+country_record_names = sorted(countries_data, key=lambda x: x['name'])
+country_record_capital = sorted(countries_data, key=lambda x: x['capital'])
+country_record_population = sorted(countries_data, key=lambda x: x['population'])
+print(country_record_names)
+print(country_record_capital)
+print(country_record_population)
+
+# B
+countries_count = {}
+for country in countries_data:
+    for lan in country['languages']:
+        if lan in countries_count:
+            countries_count[lan] += 1
+        else:
+            countries_count[lan] = 1
+sorting_count = sorted(countries_count.items(), reverse=True, key=lambda x: x[1])
+print(sorting_count[:10])
+
+# C
+population_dict = {}
+for country in countries_data:
+    population_dict[country['name']] = country['population']
+sorting_count = sorted(population_dict.items(), reverse=True, key=lambda x: x[1])
+print(sorting_count[:10])
