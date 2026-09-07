@@ -1,5 +1,6 @@
 # Starting lists for Levels 1 and 2, unless an exercise asks for the full country list:
 from functools import reduce
+from data.countries import countries as all_countries
 
 
 countries = ['Estonia', 'Finland', 'Sweden', 'Denmark', 'Norway', 'Iceland']
@@ -54,8 +55,8 @@ filter_land = list(filter(lambda x: 'land' in x, countries))
 print(filter_land)
 
 # 5. Apply filter to keep the country names with exactly six characters.
-names_6_characters = list(filter(lambda x: len(x) == 6, names))
-print(names_6_characters)
+countries_6_characters = list(filter(lambda x: len(x) == 6, countries))
+print(countries_6_characters)
 
 # 6. Apply filter to keep the country names with six or more characters.
 filter_countries = list(filter(lambda x: len(x) >= 6, countries))
@@ -72,7 +73,7 @@ print(list(map(lambda x: x.upper(), filter(lambda x: x.endswith('land'), countri
 def get_string_lists(lst):
     strings_in_a_list = list(filter(lambda x: isinstance(x, str), lst))
     return strings_in_a_list
-print(['OpenAI', 'NVIDIA', 16, 4.0, True])
+print(get_string_lists(['OpenAI', 'NVIDIA', 16, 4.0, True]))
 
 # 10. Apply reduce to calculate the total of the numbers list.
 def add_two_nums(x, y):
@@ -90,15 +91,30 @@ print(final_sentence)
 
 # 12. Define categorize_countries to return country names matching a shared text pattern, such as 'land', 'ia', 'island', or 'stan'.
 def categorize_countries():
+    matching_text = list(filter(lambda x: 'land' in x or 'ia' in x or 'island' in x or 'stan' in x, all_countries))
+    return matching_text
+print(categorize_countries())
 
 # 13. Define a function that counts country names by their first letter and returns a dictionary whose keys are letters and whose values are the counts.
-
+def first_char_country():
+    final_dict = {}
+    for i in all_countries:
+        if i[0] in final_dict:
+            final_dict[i[0]] += 1
+        else:
+            final_dict[i[0]] = 1
+    return final_dict
+print(first_char_country())
 
 # 14. Define get_first_ten_countries to return the first ten entries from the full countries list, preserving their existing order.
-
+def get_first_ten_countries():
+    return all_countries[:10]
+print(get_first_ten_countries())
 
 # 15. Define get_last_ten_countries to return the last ten entries from the full countries list, preserving their existing order.
-
+def get_last_ten_countries():
+    return all_countries[-10:]
+print(get_last_ten_countries())
 
 # Exercises: Level 3
 
