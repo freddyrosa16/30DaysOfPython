@@ -89,7 +89,7 @@ print(final_sentence)
 # For exercises 12-15, use the full countries list in data/countries.py.
 
 # 12. Define categorize_countries to return country names matching a shared text pattern, such as 'land', 'ia', 'island', or 'stan'.
-
+def categorize_countries():
 
 # 13. Define a function that counts country names by their first letter and returns a dictionary whose keys are letters and whose values are the counts.
 
