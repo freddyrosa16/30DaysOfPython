@@ -1,4 +1,7 @@
 # Starting lists for Levels 1 and 2, unless an exercise asks for the full country list:
+from functools import reduce
+
+
 countries = ['Estonia', 'Finland', 'Sweden', 'Denmark', 'Norway', 'Iceland']
 names = ['Asabeneh', 'Lidiya', 'Ermias', 'Abraham']
 numbers = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
@@ -63,17 +66,25 @@ countries_start_e = list(filter(lambda x: x.startswith('E'), countries))
 print(countries_start_e)
 
 # 8. Combine at least two operations from map, filter, and reduce in one chain, passing one operation's output into the next using Python syntax.
-
+print(list(map(lambda x: x.upper(), filter(lambda x: x.endswith('land'), countries))))
 
 # 9. Define get_string_lists to accept a list and return a new list containing only its string values.
-
+def get_string_lists(lst):
+    strings_in_a_list = list(filter(lambda x: isinstance(x, str), lst))
+    return strings_in_a_list
+print(['OpenAI', 'NVIDIA', 16, 4.0, True])
 
 # 10. Apply reduce to calculate the total of the numbers list.
-
+def add_two_nums(x, y):
+    return int(x) + int(y)
+total = reduce(add_two_nums, numbers)
+print(total)
 
 # 11. Apply reduce to combine the countries list into the sentence shown below.
 # Expected output: Estonia, Finland, Sweden, Denmark, Norway, and Iceland are north European countries
-
+reduced_countries = reduce(lambda x, y: f'{x}, {y}', countries[:-1])
+final_sentence = f'{reduced_countries}, and {countries[-1]} are north European countries'
+print(final_sentence)
 
 # For exercises 12-15, use the full countries list in data/countries.py.
 
