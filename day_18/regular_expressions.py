@@ -59,8 +59,13 @@ positions = (
 # that are not in the input text.
 
 # Write your answer below.
-
-
+string_digits = re.findall(r'-?\d+', positions)
+string_digits.append('-1')
+string_digits.append('2')
+sorted_points = sorted(int(x) for x in string_digits)
+expected_distance = int(sorted_points[-1]) - int(sorted_points[0])
+print(sorted_points)
+print(expected_distance)
 # Exercises: Level 2
 
 # 1. Write a pattern which identifies if a string is a valid python variable
