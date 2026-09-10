@@ -76,7 +76,11 @@ print(expected_distance)
 # is_valid_variable('firstname') # True
 
 # Write your answer below.
-
+variable1 = bool(re.findall(r"^[a-zA-Z_][a-zA-Z0-9_]*$", "first_name"))
+variable2 = bool(re.findall(r"^[a-zA-Z_][a-zA-Z0-9_]*$", "first-name"))
+variable3 = bool(re.findall(r"^[a-zA-Z_][a-zA-Z0-9_]*$", "1first_name"))
+variable4 = bool(re.findall(r"^[a-zA-Z_][a-zA-Z0-9_]*$", "firstname"))
+print(variable1, variable2, variable3, variable4)
 
 # Exercises: Level 3
 
@@ -97,3 +101,13 @@ sentence = (
 # [(3, 'I'), (2, 'teaching'), (2, 'teacher')]
 
 # Write your answer below.
+match = {}
+cleaned = re.sub(r"[^\w\s]", "", sentence)
+for word in cleaned.split():
+    if word not in match:
+        match[word] = 1
+    else:
+        match[word] += 1
+sorted_match = sorted(((value, key) for key, value in match.items()), reverse=True)
+print(cleaned)
+print(sorted_match[:3])
