@@ -8,7 +8,19 @@ import json
 # data/melina_trump_speech.txt
 
 # Write your answer below.
-def speech():
+def speech(txt):
+    word_total = 0
+    with open(txt) as f:
+        lines = f.read().splitlines()
+        for line in lines:
+            word_total += len(line.split())
+    name = txt.split('/')[-1].split('.')[0]
+    return f'{name} has {len(lines)} lines and {word_total} words'
+print(speech('data/obama_speech.txt'),'\n')
+print(speech("data/michelle_obama_speech.txt"),'\n')
+print(speech("data/donald_speech.txt"),'\n')
+print(speech("data/melina_trump_speech.txt"),'\n')
+
 
 # 2. Using data/countries_data.json, rank languages by how many countries
 # list them. Return the top 10, then try 3.
@@ -16,13 +28,40 @@ def speech():
 # Return format: [(country_count, language), ...]
 
 # Write your answer below.
-
+def most_spoken_languages(filename, n):
+    language_count = {}
+    with open(filename) as f:
+        countries = json.load(f)
+        for country in countries:
+            for language in country["languages"]:
+                if language not in language_count:
+                    language_count[language] = 1
+                else:
+                    language_count[language] += 1
+    ranked_languages = sorted(((count, lang) for lang, count in language_count.items()), reverse=True, key=lambda x: x[0])
+    return ranked_languages[:n]
+print(most_spoken_languages("data/countries_data.json", 10))
+print(most_spoken_languages("data/countries_data.json", 3))
 
 # 3. Rank countries in that JSON by population. Return 10, then 3.
 # Function: most_populated_countries(filename, n)
 # Return format: [{'country': name, 'population': population}, ...]
 
 # Write your answer below.
+def most_populated_countries(filename, n):
+    population_list = []
+    with open(filename) as f:
+        countries = json.load(f)
+        for country in countries:
+            countries_pop_dict = {
+                'country': country['name'],
+                'population': country['population']
+            }
+            population_list.append(countries_pop_dict)
+    sorted_population = sorted(population_list, reverse=True, key=lambda x: x['population'])
+    return sorted_population[:n]
+print(most_populated_countries("data/countries_data.json", 10))
+print(most_populated_countries("data/countries_data.json", 3))
 
 
 # Exercises: Level 2
