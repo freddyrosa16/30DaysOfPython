@@ -1,5 +1,6 @@
 # Exercises: Level 1
 import json
+import os
 
 # 1. Create a function that reports line and word totals for each speech:
 # data/obama_speech.txt
@@ -70,13 +71,44 @@ print(most_populated_countries("data/countries_data.json", 3))
 # data/email_exchanges_big.txt into a list.
 
 # Write your answer below.
-
+def sender_email(txt):
+    emails = []
+    with open(txt) as f:
+        for lines in f:
+            if lines.startswith("From:"):
+                splitted = lines.split()
+                emails.append(splitted[1])
+    return emails
+print(sender_email("data/email_exchanges_big.txt"))
 
 # 2. Implement find_most_common_words(text_or_file, n), returning
 # (count, word) tuples ordered by decreasing frequency. Try n=10 and n=5.
 
 # Write your answer below.
-
+def find_most_common_words(text_or_file, n):
+    word_dict = {}
+    if os.path.exists(text_or_file):
+        with open(text_or_file) as f:
+            for lines in f:
+                splitted_lines = lines.split()
+                for word in splitted_lines:
+                    if word not in word_dict:
+                        word_dict[word] = 1
+                    else:
+                        word_dict[word] += 1
+        sorted_words = sorted(((count, word) for word, count in word_dict.items()), reverse=True)
+        return sorted_words[:n]
+    else:
+        splitted_lines = text_or_file.split()
+        for word in splitted_lines:
+            if word not in word_dict:
+                word_dict[word] = 1
+            else:
+                word_dict[word] += 1
+        sorted_words = sorted(((count, word) for word, count in word_dict.items()), reverse=True)
+        return sorted_words[:n]
+print(find_most_common_words("data/email_exchanges_big.txt", 10))
+print(find_most_common_words("data/email_exchanges_big.txt", 5))
 
 # 3. Reuse that function to report each speech's 10 most frequent words.
 
