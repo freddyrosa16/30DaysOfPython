@@ -1,6 +1,7 @@
 # Exercises: Level 1
 import json
 import os
+import re
 
 # 1. Create a function that reports line and word totals for each speech:
 # data/obama_speech.txt
@@ -113,6 +114,10 @@ print(find_most_common_words("data/email_exchanges_big.txt", 5))
 # 3. Reuse that function to report each speech's 10 most frequent words.
 
 # Write your answer below.
+print(find_most_common_words("data/obama_speech.txt", 10))
+print(find_most_common_words("data/michelle_obama_speech.txt", 10))
+print(find_most_common_words("data/donald_speech.txt", 10))
+print(find_most_common_words("data/melina_trump_speech.txt", 10))
 
 
 # 4. Compare Michelle's and Melina's speeches for similarity. Accept text
@@ -120,7 +125,9 @@ print(find_most_common_words("data/email_exchanges_big.txt", 5))
 # Stop words: data/stop_words.py
 
 # Write your answer below.
-
+def clean_text(txt):
+    clean_text = re.sub(r"[^\w\s]", "", txt).lower()
+    return clean_text
 
 # 5. Report the top 10 words in data/romeo_and_juliet.txt.
 
