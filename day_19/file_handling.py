@@ -2,6 +2,7 @@
 import json
 import os
 import re
+from data.stop_words import stop_words
 
 # 1. Create a function that reports line and word totals for each speech:
 # data/obama_speech.txt
@@ -126,8 +127,15 @@ print(find_most_common_words("data/melina_trump_speech.txt", 10))
 
 # Write your answer below.
 def clean_text(txt):
-    clean_text = re.sub(r"[^\w\s]", "", txt).lower()
+    clean_text = re.sub(r"[^\w\s]", " ", txt).lower()
     return clean_text
+
+def remove_support_words(txt):
+    words = txt.split()
+    filtered_words = list(filter(lambda x: x not in stop_words, words))
+    return filtered_words
+
+if os.path.exists(speech1):
 
 # 5. Report the top 10 words in data/romeo_and_juliet.txt.
 
