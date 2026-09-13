@@ -2,6 +2,7 @@
 import json
 import os
 import re
+import csv
 from data.stop_words import stop_words
 
 # 1. Create a function that reports line and word totals for each speech:
@@ -13,7 +14,7 @@ from data.stop_words import stop_words
 # Write your answer below.
 def speech(txt):
     word_total = 0
-    with open(txt) as f:
+    with open(txt, encoding="utf-8") as f:
         lines = f.read().splitlines()
         for line in lines:
             word_total += len(line.split())
@@ -33,7 +34,7 @@ print(speech("data/melina_trump_speech.txt"),'\n')
 # Write your answer below.
 def most_spoken_languages(filename, n):
     language_count = {}
-    with open(filename) as f:
+    with open(filename, encoding="utf-8") as f:
         countries = json.load(f)
         for country in countries:
             for language in country["languages"]:
@@ -53,7 +54,7 @@ print(most_spoken_languages("data/countries_data.json", 3))
 # Write your answer below.
 def most_populated_countries(filename, n):
     population_list = []
-    with open(filename) as f:
+    with open(filename, encoding="utf-8") as f:
         countries = json.load(f)
         for country in countries:
             countries_pop_dict = {
@@ -75,7 +76,7 @@ print(most_populated_countries("data/countries_data.json", 3))
 # Write your answer below.
 def sender_email(txt):
     emails = []
-    with open(txt) as f:
+    with open(txt, encoding="utf-8") as f:
         for lines in f:
             if lines.startswith("From:"):
                 splitted = lines.split()
@@ -88,27 +89,22 @@ print(sender_email("data/email_exchanges_big.txt"))
 
 # Write your answer below.
 def find_most_common_words(text_or_file, n):
-    word_dict = {}
-    if os.path.exists(text_or_file):
-        with open(text_or_file) as f:
-            for lines in f:
-                splitted_lines = lines.split()
-                for word in splitted_lines:
-                    if word not in word_dict:
-                        word_dict[word] = 1
-                    else:
-                        word_dict[word] += 1
-        sorted_words = sorted(((count, word) for word, count in word_dict.items()), reverse=True)
-        return sorted_words[:n]
+    if os.path.isfile(text_or_file):
+        with open(text_or_file, encoding="utf-8") as f:
+            text = f.read()
     else:
-        splitted_lines = text_or_file.split()
-        for word in splitted_lines:
-            if word not in word_dict:
-                word_dict[word] = 1
-            else:
-                word_dict[word] += 1
-        sorted_words = sorted(((count, word) for word, count in word_dict.items()), reverse=True)
-        return sorted_words[:n]
+        text = text_or_file
+
+    # Treat punctuation as separators and count all words in lowercase.
+    words = re.sub(r"[^\w\s]", " ", text).lower().split()
+    word_dict = {}
+    for word in words:
+        if word not in word_dict:
+            word_dict[word] = 1
+        else:
+            word_dict[word] += 1
+    sorted_words = sorted(((count, word) for word, count in word_dict.items()), reverse=True)
+    return sorted_words[:n]
 print(find_most_common_words("data/email_exchanges_big.txt", 10))
 print(find_most_common_words("data/email_exchanges_big.txt", 5))
 
@@ -135,12 +131,41 @@ def remove_support_words(txt):
     filtered_words = list(filter(lambda x: x not in stop_words, words))
     return filtered_words
 
-if os.path.exists(speech1):
+def check_text_similarity(speech1, speech2):
+    if os.path.exists(speech1):
+        with open(speech1, encoding="utf-8") as f:
+            file_text1 = f.read()
+            cleaned_text1 = clean_text(file_text1)
+            removed_words1 = remove_support_words(cleaned_text1)
+    else:
+        cleaned_text1 = clean_text(speech1)
+        removed_words1 = remove_support_words(cleaned_text1)
+    if os.path.exists(speech2):
+        with open(speech2, encoding="utf-8") as f:
+            file_text2 = f.read()
+            cleaned_text2 = clean_text(file_text2)
+            removed_words2 = remove_support_words(cleaned_text2)
+    else:
+        cleaned_text2 = clean_text(speech2)
+        removed_words2 = remove_support_words(cleaned_text2)
+    speech_set1 = set(removed_words1)
+    speech_set2 = set(removed_words2)
+    intersection = speech_set1.intersection(speech_set2)
+    union = speech_set1.union(speech_set2)
+    if not union:
+        return 0.0
+    return (len(intersection) / len(union)) * 100
+print(
+    check_text_similarity(
+        "data/michelle_obama_speech.txt", "data/melina_trump_speech.txt"
+    )
+)
+
 
 # 5. Report the top 10 words in data/romeo_and_juliet.txt.
 
 # Write your answer below.
-
+print(find_most_common_words("data/romeo_and_juliet.txt", 10))
 
 # 6. In data/hacker_news.csv, count lines containing:
 # a. python or Python
@@ -148,3 +173,19 @@ if os.path.exists(speech1):
 # c. Java, excluding JavaScript
 
 # Write your answer below.
+def counting_lines(csv_file):
+    python_count = 0
+    java_count = 0
+    javascript_count = 0
+    with open(csv_file, newline="", encoding="utf-8") as f:
+        csv_reader = csv.reader(f, delimiter=',')
+        for row in csv_reader:
+            text = " ".join(row)
+            if 'python' in text or 'Python' in text:
+                python_count += 1
+            if 'Javascript' in text or 'javascript' in text or 'JavaScript' in text:
+                javascript_count += 1
+            if 'Java' in text and ('javascript' not in text and 'Javascript' not in text and 'JavaScript' not in text):
+                java_count += 1
+    return python_count, javascript_count, java_count
+print(counting_lines("data/hacker_news.csv"))
