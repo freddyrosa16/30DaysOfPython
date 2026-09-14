@@ -8,6 +8,7 @@ import statistics
 # URL: https://www.gutenberg.org/ebooks/1112.txt.utf-8
 # This is an updated link for the course's Gutenberg ebook 1112.
 
+
 # Write your answer below.
 def most_frequent_words():
     word_dict = {}
@@ -21,8 +22,12 @@ def most_frequent_words():
             word_dict[word] = 1
         else:
             word_dict[word] += 1
-    sorted_words = sorted(((count, word) for word, count in word_dict.items()), reverse=True)
+    sorted_words = sorted(
+        ((count, word) for word, count in word_dict.items()), reverse=True
+    )
     return sorted_words[:10]
+
+
 print(most_frequent_words())
 
 # 2. Fetch the cat breeds and complete these summaries:
@@ -34,20 +39,41 @@ print(most_frequent_words())
 # each range into a number, and whether your standard deviation describes
 # the population or a sample. The course does not specify these choices.
 
+
 # Write your answer below.
 def dog_api():
     # cat api does not work search for a dog one that does
     weight_list = []
+    life_span_list = []
+    frequency_list = []
     url = "https://dogapi.dog/api/v2/breeds"
     response = requests.get(url)
     response.raise_for_status()
     breeds = response.json()["data"]
+    country_breeds = {}
     for breed in breeds:
         attributes = breed["attributes"]
-        male_weight = (attributes['male_weight']['min'] + attributes['male_weight']['max']) / 2
-        female_weight = (attributes['female_weight']['min'] + attributes['female_weight']['max']) / 2
+        country = attributes["origin"]["country"]
+        name = attributes["name"]
+        male_weight = (
+            attributes["male_weight"]["min"] + attributes["male_weight"]["max"]
+        ) / 2
+        female_weight = (
+            attributes["female_weight"]["min"] + attributes["female_weight"]["max"]
+        ) / 2
         weight = (male_weight + female_weight) / 2
         weight_list.append(weight)
+
+        # lifespan
+        lifespan = (attributes["life"]["min"] + attributes["life"]["max"]) / 2
+        life_span_list.append(lifespan)
+
+        # Frequency
+        if country not in country_breeds:
+            country_breeds[country] = []
+        country_breeds[country].append(name)
+
+    # weight
     # min, max
     min_weight = min(weight_list)
     max_weight = max(weight_list)
@@ -59,11 +85,49 @@ def dog_api():
     median_weight = statistics.median(weight_list)
 
     # standard deviation
-    standard_deviation = statistics.pstdev(weight_list)
-print(cat_breed())
+    standard_deviation_weight = statistics.pstdev(weight_list)
+
+    # lifespan
+    # min, max
+    min_lifespan = min(life_span_list)
+    max_lifespan = max(life_span_list)
+
+    # mean
+    mean_lifespan = statistics.mean(life_span_list)
+
+    # median
+    median_lifespan = statistics.median(life_span_list)
+
+    # standard deviation
+    standard_deviation_lifespan = statistics.pstdev(life_span_list)
+
+    # Frequency
+    for country, names in country_breeds.items():
+        frequency_list.append((country, len(names), names))
+
+    return {
+        "weight": {
+            "min": min_weight,
+            "max": max_weight,
+            "mean": mean_weight,
+            "median": median_weight,
+            "std_deviation": standard_deviation_weight,
+        },
+        "lifespan": {
+            "min": min_lifespan,
+            "max": max_lifespan,
+            "mean": mean_lifespan,
+            "median_lifespan": median_lifespan,
+            "std_deviation": standard_deviation_lifespan,
+        },
+        "frequency": {
+            country: {"count": len(names), "breeds": names}
+            for country, names in country_breeds.items()
+        },
+    }
 
 
-print(cat_breed())
+print(dog_api())
 
 # 3. Fetch country records and determine:
 # a. The 10 largest countries by area.
