@@ -1,7 +1,7 @@
 import requests
 import json
 import statistics
-
+from bs4 import BeautifulSoup
 
 # 1. Fetch Romeo and Juliet from the URL below and report its 10 most
 # frequent words.
@@ -188,16 +188,18 @@ def distinct_languages():
 print(distinct_languages(), '\n')
 
 
-
-
-
-
 # 4. Retrieve and inspect the UCI dataset listing using BeautifulSoup4.
 # URL: https://archive.ics.uci.edu/datasets
 # This replaces the course's older /ml/datasets.php link.
 
 # Write your answer below.
-
+def uci_dataset():
+    url = "https://archive.ics.uci.edu/datasets"
+    response = requests.get(url)
+    response.raise_for_status()
+    soup = BeautifulSoup(response.text, "html.parser")
+    return soup.title
+print(uci_dataset())
 
 # Setup notes:
 # requests and beautifulsoup4 are third-party packages for this lesson.
