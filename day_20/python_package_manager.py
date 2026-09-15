@@ -28,7 +28,7 @@ def most_frequent_words():
     return sorted_words[:10]
 
 
-print(most_frequent_words())
+print(most_frequent_words(), "\n")
 
 # 2. Fetch the cat breeds and complete these summaries:
 # URL: https://api.thecatapi.com/v1/breeds
@@ -53,7 +53,11 @@ def dog_api():
     country_breeds = {}
     for breed in breeds:
         attributes = breed["attributes"]
-        country = attributes["origin"]["country"]
+        origin = attributes["origin"]
+        if "country" in origin:
+            country = origin["country"]
+        else:
+            country = "Unknown"
         name = attributes["name"]
         male_weight = (
             attributes["male_weight"]["min"] + attributes["male_weight"]["max"]
@@ -127,7 +131,7 @@ def dog_api():
     }
 
 
-print(dog_api())
+print(dog_api(), "\n")
 
 # 3. Fetch country records and determine:
 # a. The 10 largest countries by area.
@@ -138,7 +142,54 @@ print(dog_api())
 # https://restcountries.com/v3.1/all?fields=name,area,languages
 # The alternative uses a different JSON structure; inspect it first.
 
+
 # Write your answer below.
+def country_record_area():
+    url = "https://raw.githubusercontent.com/mledoze/countries/master/countries.json"
+    response = requests.get(url)
+    response.raise_for_status()
+    country_info = response.json()
+    country_area = {}
+    for country in country_info:
+        name = country['name']['official']
+        country_area[name] = country['area']
+    sorted_countries_area = sorted(((area, country) for country, area in country_area.items()), reverse=True, key=lambda x: x[0])
+    return sorted_countries_area[:10]
+print(country_record_area(), '\n')
+
+def country_records_language():
+    url = "https://raw.githubusercontent.com/mledoze/countries/master/countries.json"
+    response = requests.get(url)
+    response.raise_for_status()
+    country_info = response.json()
+    country_language = {}
+    for country in country_info:
+        languages = country['languages'].values()
+        for language in languages:
+            if language not in country_language:
+                country_language[language] = 1
+            else:
+                country_language[language] += 1
+    sorted_language = sorted(((count, country) for country, count in country_language.items()), reverse=True, key=lambda x: x[0])
+    return sorted_language[:10]
+print(country_records_language(), '\n')
+
+def distinct_languages():
+    url = "https://raw.githubusercontent.com/mledoze/countries/master/countries.json"
+    response = requests.get(url)
+    response.raise_for_status()
+    country_info = response.json()
+    language_set = set()
+    for country in country_info:
+        languages = country['languages'].values()
+        for language in languages:
+            language_set.add(language)
+    return f'The number of distinct langugages is {len(language_set)}, and the langugages are: {language_set}'
+print(distinct_languages(), '\n')
+
+
+
+
 
 
 # 4. Retrieve and inspect the UCI dataset listing using BeautifulSoup4.
