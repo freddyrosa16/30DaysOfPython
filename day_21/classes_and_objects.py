@@ -103,3 +103,5 @@ class Statistics:
 # Create an account, add entries, and display its summary and balance.
 
 # Write your answer below.
+class PersonalAccount:
+    def __init__(self, firstname, lastname, incomes, expenses):
