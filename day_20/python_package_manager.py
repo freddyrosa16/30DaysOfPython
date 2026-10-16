@@ -151,11 +151,18 @@ def country_record_area():
     country_info = response.json()
     country_area = {}
     for country in country_info:
-        name = country['name']['official']
-        country_area[name] = country['area']
-    sorted_countries_area = sorted(((area, country) for country, area in country_area.items()), reverse=True, key=lambda x: x[0])
+        name = country["name"]["official"]
+        country_area[name] = country["area"]
+    sorted_countries_area = sorted(
+        ((area, country) for country, area in country_area.items()),
+        reverse=True,
+        key=lambda x: x[0],
+    )
     return sorted_countries_area[:10]
-print(country_record_area(), '\n')
+
+
+print(country_record_area(), "\n")
+
 
 def country_records_language():
     url = "https://raw.githubusercontent.com/mledoze/countries/master/countries.json"
@@ -164,15 +171,22 @@ def country_records_language():
     country_info = response.json()
     country_language = {}
     for country in country_info:
-        languages = country['languages'].values()
+        languages = country["languages"].values()
         for language in languages:
             if language not in country_language:
                 country_language[language] = 1
             else:
                 country_language[language] += 1
-    sorted_language = sorted(((count, country) for country, count in country_language.items()), reverse=True, key=lambda x: x[0])
+    sorted_language = sorted(
+        ((count, country) for country, count in country_language.items()),
+        reverse=True,
+        key=lambda x: x[0],
+    )
     return sorted_language[:10]
-print(country_records_language(), '\n')
+
+
+print(country_records_language(), "\n")
+
 
 def distinct_languages():
     url = "https://raw.githubusercontent.com/mledoze/countries/master/countries.json"
@@ -181,16 +195,19 @@ def distinct_languages():
     country_info = response.json()
     language_set = set()
     for country in country_info:
-        languages = country['languages'].values()
+        languages = country["languages"].values()
         for language in languages:
             language_set.add(language)
-    return f'The number of distinct langugages is {len(language_set)}, and the langugages are: {language_set}'
-print(distinct_languages(), '\n')
+    return f"The number of distinct langugages is {len(language_set)}, and the langugages are: {language_set}"
+
+
+print(distinct_languages(), "\n")
 
 
 # 4. Retrieve and inspect the UCI dataset listing using BeautifulSoup4.
 # URL: https://archive.ics.uci.edu/datasets
 # This replaces the course's older /ml/datasets.php link.
+
 
 # Write your answer below.
 def uci_dataset():
@@ -199,6 +216,8 @@ def uci_dataset():
     response.raise_for_status()
     soup = BeautifulSoup(response.text, "html.parser")
     return soup.title
+
+
 print(uci_dataset())
 
 # Setup notes:
